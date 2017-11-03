@@ -10,13 +10,14 @@ void draw() {
   background(51);
   paddleL.update();
   paddleL.display();
-  paddleAI.update();
+  //paddleAI.update();
   paddleAI.display();
+  rect(width/2,height/2,2,height);
   
   if(paddleAI.y < ball.y) {
-    paddleAI.y += 5;
+    paddleAI.y += ball.randSpeed;
   } else {
-    paddleAI.y -= 5;
+    paddleAI.y -= ball.randSpeed;
   }
   
 
