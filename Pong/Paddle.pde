@@ -4,16 +4,22 @@ class Paddle {
   float w;
   float h;
 
-  Paddle() {
+  
+
+  Paddle(float xx, float yy) {
     w = 10;
     h = 60;
 
-    x = w*2;
-    //y = 400/2;
-    y = 400/2;
+    x = xx;
+    y = yy;
+  }
+
+  void reset() {
+    
   }
 
   void update() {
+    y = constrain(y, 0+h/2, height-h/2);
   }
   void display() {
     pushMatrix();
