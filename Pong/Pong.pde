@@ -5,7 +5,7 @@ int control;
 int control2;
 boolean keys;
 void setup() {
-  //frameRate(70);
+  frameRate(60);
   size(600, 400, P2D);
   smooth();
 }

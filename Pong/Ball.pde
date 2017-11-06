@@ -4,9 +4,9 @@ class Ball {
   float w = 15;
 
   float angle = random(-PI/4, PI/4);
-  float deltaX = 5 * cos(angle);
-  float deltaY = 5 * sin(angle);
-  float speed = 6;
+  float speed = 7;
+  float deltaX = speed * cos(angle);
+  float deltaY = speed * sin(angle);
   int randSpeed;
   int ballThrow;
 
