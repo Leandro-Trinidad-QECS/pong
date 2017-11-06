@@ -6,7 +6,7 @@ class Ball {
   float angle = random(-PI/4, PI/4);
   float deltaX = 5 * cos(angle);
   float deltaY = 5 * sin(angle);
-  float speed = 5;
+  float speed = 6;
   int randSpeed;
   int ballThrow;
 
@@ -33,10 +33,10 @@ class Ball {
     if (random(1) < 0.5) {
       deltaX *= -1;
     }
-    randSpeed = int(random(2, 4));
+    randSpeed = int(random(3, 4));
   }
   void update() {
-    print(angle);
+    //print(angle);
     y += deltaY;
     x += deltaX;
 
@@ -44,10 +44,12 @@ class Ball {
       deltaY *= -1;
     }
     if (x < 0) {
+      paddleAI.score += 1;
       ballThrow = 1;
       reset();
     }
     if (x > width) {
+      paddleL.score += 1;
       ballThrow = 2;
       reset();
     }
