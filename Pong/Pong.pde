@@ -43,7 +43,7 @@ void draw() {
     if (ball.lookFor) {
       if (paddleAI.y < ball.y) {
         paddleAI.y += ball.randSpeed;
-      } else {
+      } else if (paddleAI.y > ball.y +10)  {
         paddleAI.y -= ball.randSpeed;
       }
     } else {
