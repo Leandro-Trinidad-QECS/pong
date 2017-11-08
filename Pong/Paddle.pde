@@ -8,8 +8,8 @@ class Paddle {
   
 
   Paddle(float xx, float yy) {
-    w = 10;
-    h = 60;
+    w = 20;
+    h = 65;
 
     x = xx;
     y = yy;
