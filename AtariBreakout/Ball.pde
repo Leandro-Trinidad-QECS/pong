@@ -8,8 +8,8 @@ class Ball {
     this.x = x;
     this.y = y;
     this.w = w;
-
-
+  }
+  void launch() {
     //random angle
     //float deg = int(random(80,-80));
     float deg = int(random(80, -80));
@@ -21,7 +21,9 @@ class Ball {
 
     //TODO: get the ball to launh with an angle
   }
+
   void update() {
+    
     x += deltaX;
     y += deltaY;
     if (x<0 || x > width) {
@@ -31,12 +33,12 @@ class Ball {
       deltaY *= -1;
     }
     if (collision(int(paddle.x), int(paddle.y), int(paddle.w), int(paddle.h), int(x), int(y), int(w))) {
-       float diff = x - (paddle.x - paddle.w/2);
-        float rad = radians(45);
-        float angle = map(diff, 0, paddle.w, rad, -rad);
-        
-        deltaX = 5 * cos(angle);
-        deltaY =  5 * sin(angle);
+      float diff = x - (paddle.x - paddle.w/2);
+      float rad = radians(45);
+      float angle = map(diff, 0, paddle.w, rad, -rad);
+
+      deltaX = 5 * cos(angle);
+      deltaY =  5 * sin(angle);
     }
   }
   void display() {

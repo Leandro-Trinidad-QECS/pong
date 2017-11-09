@@ -1,22 +1,19 @@
 class Paddle {
   float x;
   float y;
-  float w = 100;
-  float h = 10;
+  float w;
+  float h;
 
-  Paddle(float x, float y) {
+  Paddle(float x, float y, float w, float h) {
     this.x = x;
     this.y = y;
+    this.w = w;
+    this.h = h;
   }
-
-
   void update() {
-
-
-    x = constrain(x, 0+w/2, width-w/2);
   }
   void display() {
     rectMode(CENTER);
-    rect(x, y, w, h,50);
+    rect(x,y,w,h,50);
   }
 }
