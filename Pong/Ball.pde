@@ -9,6 +9,8 @@ class Ball {
   float speed = 5;
   int randSpeed;
   int ballThrow;
+  int scoreLeft;
+  int scoreRight;
 
   void reset() {
     x = 600/2;
@@ -17,26 +19,12 @@ class Ball {
     deltaX = speed * cos(angle);
     deltaY = speed * sin(angle);
 
-    if (ballThrow == 1) {
-      if (angle < 0) {
-        deltaX *= -1;
-      }
-    }
-
-    if (ballThrow == 2) {
-      if (angle > 0) {
-        deltaX *= -1;
-      }
-    }
-
-
     if (random(1) < 0.5) {
       deltaX *= -1;
     }
     randSpeed = int(random(2, 4));
   }
   void update() {
-    print(angle);
     y += deltaY;
     x += deltaX;
 
@@ -45,10 +33,12 @@ class Ball {
     }
     if (x < 0) {
       ballThrow = 1;
+      scoreRight++;
       reset();
     }
     if (x > width) {
       ballThrow = 2;
+      scoreLeft++;
       reset();
     }
 
