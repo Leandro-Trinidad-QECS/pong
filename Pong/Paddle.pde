@@ -3,6 +3,7 @@ class Paddle {
   float y;
   float w;
   float h;
+  int score;
 
 
 
