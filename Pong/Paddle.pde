@@ -5,7 +5,7 @@ class Paddle {
   float h;
   int score;
 
-  
+
 
   Paddle(float xx, float yy) {
     w = 20;
@@ -16,7 +16,6 @@ class Paddle {
   }
 
   void reset() {
-    
   }
 
   void update() {

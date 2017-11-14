@@ -9,7 +9,12 @@ class Ball {
   float deltaY = speed * sin(angle);
   int randSpeed = int(random(4, 5));
   int ballThrow;
+<<<<<<< HEAD
+  int scoreLeft;
+  int scoreRight;
+=======
   boolean lookFor = true;
+>>>>>>> origin/master
 
   void reset() {
     x = 600/2;
@@ -18,7 +23,10 @@ class Ball {
     deltaX = speed * cos(angle);
     deltaY = speed * sin(angle);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
     if (random(1) < 0.5) {
       deltaX *= -1;
     }
@@ -26,7 +34,10 @@ class Ball {
     lookFor = true;
   }
   void update() {
+<<<<<<< HEAD
+=======
     //print(angle);
+>>>>>>> origin/master
     y += deltaY;
     x += deltaX;
 
@@ -36,11 +47,13 @@ class Ball {
     if (x < 0) {
       paddleAI.score += 1;
       ballThrow = 1;
+      scoreRight++;
       reset();
     }
     if (x > width) {
       paddleL.score += 1;
       ballThrow = 2;
+      scoreLeft++;
       reset();
     }
 
