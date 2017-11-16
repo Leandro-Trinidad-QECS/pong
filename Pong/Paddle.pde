@@ -3,13 +3,12 @@ class Paddle {
   float y;
   float w;
   float h;
-  int score;
 
 
 
   Paddle(float xx, float yy) {
-    w = 20;
-    h = 65;
+    w = 10;
+    h = 60;
 
     x = xx;
     y = yy;
