@@ -11,6 +11,8 @@ class Ball {
   int ballThrow;
   int scoreLeft;
   int scoreRight;
+  
+  boolean AIHit;
 
   void reset() {
     x = 600/2;
@@ -23,6 +25,7 @@ class Ball {
       deltaX *= -1;
     }
     randSpeed = int(random(2, 4));
+    AIHit = false;
   }
   void update() {
     y += deltaY;
@@ -51,6 +54,7 @@ class Ball {
         deltaX = speed * cos(angle);
         deltaY = speed * sin(angle);
         x = paddleL.x + paddleL.w/2 + w;
+        AIHit = false;
       }
     }
     if (collision(int(paddleAI.x), int(paddleAI.y), int(paddleAI.w), int(paddleAI.h), int(x), int(y), int(w))) {
@@ -61,6 +65,7 @@ class Ball {
         deltaX = speed * cos(angle);
         deltaY = speed * sin(angle);
         x = paddleAI.x - paddleAI.w/2 - w;
+        AIHit = true;
       }
     }
   }

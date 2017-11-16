@@ -18,30 +18,37 @@ void draw() {
   paddleAI.display();
   rect(width/2, height/2, 2, height);
 
-  //ai paddle
-  if (paddleAI.y < ball.y) {
-    paddleAI.y += ball.randSpeed;
-  } else {
-    paddleAI.y -= ball.randSpeed;
-  }
-
 
   ball.update();
   ball.display();
 
-  //controlls the paddle
-  if (!togg) {
-    text("Key",100,height-10);
-    if (control == 1) {
-      paddleL.y -= 10;
-    }
-    if (control == -1) {
-      paddleL.y += 10;
+  if (ball.AIHit) {
+    if (paddleAI.y > height/2) {
+      paddleAI.y -= 5;
+    } else if (paddleAI.y < height/2) {
+      paddleAI.y += 5;
     }
   } else {
-    text("Mouse",100,height-10);
-    paddleL.y = mouseY;
+    //ai paddle
+    if (paddleAI.y < ball.y) {
+      paddleAI.y += ball.randSpeed;
+    } else {
+      paddleAI.y -= ball.randSpeed;
+    }
   }
+  ////controlls the paddle
+  //if (!togg) {
+  //  text("Key", 100, height-10);
+  //  if (control == 1) {
+  //    paddleL.y -= 10;
+  //  }
+  //  if (control == -1) {
+  //    paddleL.y += 10;
+  //  }
+  //} else {
+  //  text("Mouse", 100, height-10);
+  //  paddleL.y = mouseY;
+  //}
 
   textSize(51);
   text(ball.scoreLeft, 100, 100);
