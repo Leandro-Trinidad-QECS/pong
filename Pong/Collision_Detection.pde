@@ -51,3 +51,13 @@ boolean collision(int rx, int ry, int rw, int rh, int bx, int by, int d) {
     return false;
   }
 }
+boolean pointRect(int px, int py, int rx, int ry, int rw, int rh) {
+  
+  // test for collision
+  if (px >= rx-rw/2 && px <= rx+rw/2 && py >= ry-rh/2 && py <= ry+rh/2) {
+    return true;    // if a hit, return true
+  }
+  else {            // if not, return false
+    return false;
+  }
+}

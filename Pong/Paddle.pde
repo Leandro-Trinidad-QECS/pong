@@ -6,18 +6,21 @@ class Paddle {
 
 
 
-  Paddle(float xx, float yy) {
-    w = 10;
-    h = 60;
+  Paddle(float x, float y) {
+    this.w = 10;
+    this.h = 60;
 
-    x = xx;
-    y = yy;
+    this.x = x;
+    this.y = y;
   }
 
   void reset() {
   }
 
+
   void update() {
+
+    //keeps the paddle in the screen
     y = constrain(y, 0+h/2, height-h/2);
   }
   void display() {
