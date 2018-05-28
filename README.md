@@ -42,7 +42,6 @@ things I want to improve in the future
 things I want to improve in the next update
 *   [ ] make the ball randomly choose a side to launch
 *   [ ] collision detection
-*
 ## Authors
 
 * **Leandro Trinidad** - *Initial work* - [Leandro](https://github.com/Leandro-Trinidad-QECS)
