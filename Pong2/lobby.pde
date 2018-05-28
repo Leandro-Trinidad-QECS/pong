@@ -3,9 +3,10 @@
 void lobby() {
   background(0);
   textFont(JustMyType90);
-  textAlign(CENTER);
+  textAlign(CENTER,CENTER);
   drawScore();
-  //text("PONG",width/2,100);
+  textAlign(CENTER,CENTER);
+  text("PONG",width/2,100);
   ball.display();
   ball.update();
   paddleL.display();
