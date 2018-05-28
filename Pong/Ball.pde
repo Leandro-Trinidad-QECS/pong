@@ -32,28 +32,27 @@ class Ball {
     }
   }
 
-  void left(float paddY, float paddX, float paddH, float paddW) {
-    float diff = y - (paddY - paddH/2);
-    float rad = radians(45);
-    float angle = map(diff, 0, paddH, -rad, rad);
-    deltaX = speed * cos(angle);
-    deltaY = speed * sin(angle);
-    x = paddX + paddw/2 + w;
+//  void left(float paddY, float paddX, float paddH, float paddW) {
+//    float diff = y - (paddY - paddH/2);
+//    float rad = radians(45);
+//    float angle = map(diff, 0, paddH, -rad, rad);
+//    deltaX = speed * cos(angle);
+//    deltaY = speed * sin(angle);
+//    x = paddX + paddw/2 + w;
+//  }
+//  void right() {
+//    float diff = y - (paddleAI.y - paddleAI.h/2);
+//    float angle = map(diff, 0, paddleAI.h, radians(225), radians(135));
+//    deltaX = speed * cos(angle);
+//    deltaY = speed * sin(angle);
+//    x = paddleAI.x - paddleAI.w/2 - w;
+//    AIHit = true;
+//  }
+  void display() {
+    pushMatrix();
+    fill(#3FDE38);
+    ellipseMode(CENTER);
+    rect(x, y, w, w);
+    popMatrix();
   }
-}
-void right() {
-  float diff = y - (paddleAI.y - paddleAI.h/2);
-  float angle = map(diff, 0, paddleAI.h, radians(225), radians(135));
-  deltaX = speed * cos(angle);
-  deltaY = speed * sin(angle);
-  x = paddleAI.x - paddleAI.w/2 - w;
-  AIHit = true;
-}
-void display() {
-  pushMatrix();
-  fill(#3FDE38);
-  ellipseMode(CENTER);
-  rect(x, y, w, w);
-  popMatrix();
-}
 }
