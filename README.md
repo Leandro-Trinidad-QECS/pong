@@ -46,5 +46,4 @@ things I want to improve in the next update
 ## Authors
 
 * **Leandro Trinidad** - *Initial work* - [Leandro](https://github.com/Leandro-Trinidad-QECS)
-* **Mizero Nindo** - *algorithms* 
-* **Rosh** - *inspiration*
+* **Mizero Nhindo** - *other* 
