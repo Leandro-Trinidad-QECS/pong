@@ -26,12 +26,19 @@ git clone https://github.com/Leandro-Trinidad-QECS/pong
 ### 1.0.0
 the ball update
 - made the ball bounce differently depending on where it hit the paddle
+### Version 1.1.2
+menu update
+- created the menu
+- added textBox class for adding buttons with text
+- added buttons for one player and two players
+- 
 
 ## Improvements
 things I want to improve in the future
 
 *   [ ] Make the AI work properly
 *   [ ] Have a lobby system
+*   [ ] Transition between the screens
 *   [ ] Two player mode
 *   [ ] Demo mode (Two AI battling)
 *   [ ] Saving Score 
