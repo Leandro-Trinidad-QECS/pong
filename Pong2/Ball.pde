@@ -39,7 +39,7 @@ class Ball {
   }
   void display() {
     pushMatrix();
-    fill(#3FDE38);
+    fill(255);
     ellipseMode(CENTER);
     rect(x, y, w, w);
     popMatrix();
