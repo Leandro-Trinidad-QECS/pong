@@ -28,20 +28,28 @@ the beginning update
 - made a game screen ystem
 - made the ball bounce
 - shows the score
+### 1.1.0
+Lonely update
+- made the lobby
+- added buttons to go to single player or multiplayer
+- background of lobby is 2 padde ais fighting
+- one player is done
 ## Improvements
 things I want to improve in the future
 
 *   [ ] Make the AI work properly
-*   [ ] Have a lobby system
+*   [x] Have a lobby system
 *   [ ] Transition between the screens
 *   [ ] Two player mode
-*   [ ] Demo mode (Two AI battling)
+*   [x] Demo mode (Two AI battling)
 *   [ ] Saving Score 
 *   [ ] Seeing other people's scores in scoreboard
+*   [ ] Exit buttons while in game
+*   [ ] pausing the game
 
-things I want to improve in the next update
-*   [ ] make the ball randomly choose a side to launch
-*   [ ] collision detection
+things I want to improve in Version 1.0.0
+*   [x] make the ball randomly choose a side to launch
+*   [x] collision detection
 ## Authors
 
 * **Leandro Trinidad** - *Initial work* - [Leandro](https://github.com/Leandro-Trinidad-QECS)
