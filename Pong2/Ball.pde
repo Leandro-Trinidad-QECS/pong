@@ -16,15 +16,14 @@ class Ball {
     if (y < 0 || y > height) {
       deltaY *= -1;
     }
-  }
-
-  int score() {
-    if (x < 0) {
-      return 0;
-    } else if (x > width) {
-      return 1;
+    if (x > width || x < 0) {
+      reset();
     }
-    return -1;
+    if (paddleL.hit()) {
+      deltaX *= -1;
+    } else if (paddleR.hit()) { 
+      deltaX *= -1;
+    }
   }
 
   void reset() {
@@ -43,5 +42,6 @@ class Ball {
     ellipseMode(CENTER);
     rect(x, y, w, w);
     popMatrix();
+    
   }
 }

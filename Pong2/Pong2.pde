@@ -19,6 +19,7 @@ int scoreRight = 0;
 Paddle paddleL;
 Paddle paddleR;
 Ball ball;
+PVector ballHistory;
 void setup() {
   JustMyType90 = loadFont("JustMyType-90.vlw");
   size(858, 525, P2D);
@@ -51,4 +52,15 @@ void drawDivider() {
     rect(width/2,i,3,10);
   }
   
+}
+
+boolean collision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
+  
+  // test for collision
+  if (x1+w1/2 >= x2-w2/2 && x1-w1/2 <= x2+w2/2 && y1+h1/2 >= y2-h2/2 && y1-h1/2 <= y2+h2/2) {
+    return true;    // if a hit, return true
+  }
+  else {            // if not, return false
+    return false;
+  }
 }
