@@ -1,26 +1,27 @@
 
 
 void lobby() {
+
+  /********* Setup lobby *********/
   background(0);
   textFont(JustMyType90);
+  //drawScore();
   textAlign(CENTER, CENTER);
   //drawScore();
   textAlign(CENTER, CENTER);
+  fill(255-100);
+  text("PONG", width/2-3, 100+3);
   fill(255);
   text("PONG", width/2, 100);
+
+  /********* Balls and Paddles *********/
   ball.display();
   ball.update();
   paddleL.display();
   paddleL.update();
-  aiMoveLeftPaddle();
-  paddleR.display();
-  paddleR.update();
-  aiMoveRightPaddle();
-  textBox();
-}
 
 
-void aiMoveLeftPaddle() {
+  /********* Moving the left paddle *********/
   if (ball.x < width/2) {
     float targetY = ball.y;
     float dy = targetY - paddleL.y;
@@ -30,9 +31,13 @@ void aiMoveLeftPaddle() {
     float dy = targetY - paddleL.y;
     paddleL.y += dy * paddleL.easing;
   }
-}
 
-void aiMoveRightPaddle() {
+
+  paddleR.display();
+  paddleR.update();
+
+
+  /********* moving right paddle *********/
   if (ball.x > width/2) {
     float targetY = ball.y;
     float dy = targetY - paddleR.y;
@@ -42,14 +47,13 @@ void aiMoveRightPaddle() {
     float dy = targetY - paddleR.y;
     paddleR.y += dy * paddleR.easing;
   }
-}
-void textBox() {
-  textFont(JustMyType90);
-  textSize(50);
-  noStroke();
+
+  /********* buttons *********/
+  textFont(JustMyType50);
   fill(255);
   if (pointRect(mouseX, mouseY, width/2, height/2-50, 160, 80)) {
     if (mousePressed) {
+      resetScore();
       gameScreen = 1;
     }
     fill(255);
@@ -62,6 +66,7 @@ void textBox() {
   fill(255);
   if (pointRect(mouseX, mouseY, width/2, height/2+50, 160, 80)) {
     if (mousePressed) {
+      resetScore();
       gameScreen = 2;
     }
     fill(255);
@@ -70,25 +75,26 @@ void textBox() {
   }
   text("Two Player", width/2, height/2+50);
 }
+
+
 void drawScore() {
-  fill(255);
   textFont(JustMyType90);
   textAlign(RIGHT);
+  fill(255-100);
+  text(scoreLeft, width/2-100-3, 100+3);
+  fill(255);
   text(scoreLeft, width/2-100, 100);
+
   textAlign(LEFT);
+  fill(255-100);
+  text(scoreRight, width/2+100-3, 100+3);
+  fill(255);
   text(scoreRight, width/2+100, 100);
 }
 
 void resetScore() {
   scoreLeft = 0;
   scoreRight = 0;
-}
-boolean pointRect(int px, int py, int rx, int ry, int rw, int rh) {
-
-  // test for collision
-  if (px >= rx-rw/2 && px <= rx+rw/2 && py >= ry-rh/2 && py <= ry+rh/2) {
-    return true;    // if a hit, return true
-  } else {            // if not, return false
-    return false;
-  }
+  paddleL.reset();
+  paddleR.reset();
 }

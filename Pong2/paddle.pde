@@ -4,14 +4,23 @@ class Paddle {
   float h = 70;
   float w = 12;
   float easing = 0.05;
+  int ym = 0;
 
-  Paddle(float x, float y) {
+  Paddle(float x) {
     this.x = x;
-    this.y = y;
+    this.y = height/2;
   }
 
   void update() {
+    y += ym;
     y = constrain(y, 0+h/2, height-h/2);
+  }
+  void reset() {
+    this.y = height/2;
+  }
+
+  void move(int mv) {
+    ym = mv;
   }
 
   boolean hit() {
@@ -21,8 +30,11 @@ class Paddle {
     return false;
   }
   void display() {
-    fill(255);
+    
     rectMode(CENTER);
+    fill(255-100);
+    rect(x-3, y+3, w, h);
+    fill(255);
     rect(x, y, w, h);
   }
 }
