@@ -34,13 +34,16 @@ Lonely update
 - added buttons to go to single player or multiplayer
 - background of lobby is 2 padde ais fighting
 - one player is done
+### 1.2.0
+Friends update
+- added two players
 ## Improvements
 things I want to improve in the future
 
 *   [ ] Make the AI work properly
 *   [x] Have a lobby system
 *   [ ] Transition between the screens
-*   [ ] Two player mode
+*   [x] Two player mode
 *   [x] Demo mode (Two AI battling)
 *   [ ] Saving Score 
 *   [ ] Seeing other people's scores in scoreboard
