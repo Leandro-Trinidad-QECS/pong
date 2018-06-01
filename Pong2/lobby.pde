@@ -93,6 +93,7 @@ void drawScore() {
 }
 
 void resetScore() {
+  ball.reset();
   scoreLeft = 0;
   scoreRight = 0;
   paddleL.reset();

@@ -17,10 +17,6 @@ void onePlayer() {
   }
   paddleR.update();
 
-
-
-
-
   ball.display();
   ball.update();
 }

@@ -4,7 +4,7 @@
 // 2:  Two Player
 // 3:  Game Over
 
-int gameScreen = 0;
+int gameScreen = 2;
 
 /********* FONT *********/
 
@@ -45,8 +45,32 @@ void draw() {
   }
 }
 void keyReleased() {
-  paddleL.move(0);
-  paddleL.move(0);
+  if (gameScreen == 1) {
+    if (key == CODED) {
+      if (keyCode == UP) {
+        paddleL.move(0);
+      } 
+      if (keyCode == DOWN) {
+        paddleL.move(0);
+      }
+    }
+  }
+  if (gameScreen == 2) {
+    if (key == CODED) {
+      if (keyCode == UP) {
+        paddleR.move(0);
+      } 
+      if (keyCode == DOWN) {
+        paddleR.move(0);
+      }
+    }
+    if (key == 'w') {
+      paddleL.move(0);
+    } 
+    if (key == 's') {
+      paddleL.move(0);
+    }
+  }
 }
 void keyPressed() {
   if (gameScreen == 1) {
@@ -59,6 +83,22 @@ void keyPressed() {
       }
     }
   }
+  if (gameScreen == 2) {
+    if (key == CODED) {
+      if (keyCode == UP) {
+        paddleR.move(-5);
+      } 
+      if (keyCode == DOWN) {
+        paddleR.move(5);
+      }
+    }
+    if (key == 'w') {
+      paddleL.move(-5);
+    } 
+    if (key == 's') {
+      paddleL.move(5);
+    }
+  }
 }
 
 
@@ -67,6 +107,8 @@ void drawDivider() {
 
     noStroke();
     rectMode(CENTER);
+    fill(255-100);
+    rect(width/2-1, i+1, 3, 10);
     fill(255);
     rect(width/2, i, 3, 10);
   }

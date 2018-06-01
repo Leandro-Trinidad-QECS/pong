@@ -1,4 +1,11 @@
 void twoPlayer() {
-  background(255,0,0);
+  background(0);
+  drawDivider();
   drawScore();
+  paddleL.display();
+  paddleR.display();
+  paddleL.update();
+  paddleR.update();
+  ball.display();
+  ball.update();
 }

@@ -3,7 +3,7 @@ class Paddle {
   float y;
   float h = 70;
   float w = 12;
-  float easing = 0.05;
+  float easing = 0.06;
   int ym = 0;
 
   Paddle(float x) {
