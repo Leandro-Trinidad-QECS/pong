@@ -4,7 +4,8 @@
 // 2:  Two Player
 // 3:  Game Over
 
-int gameScreen = 2;
+int gameScreen = 0;
+boolean paused = false;
 
 /********* FONT *********/
 
@@ -24,6 +25,7 @@ PVector ballHistory;
 void setup() {
   JustMyType90 = loadFont("JustMyType-90.vlw");
   JustMyType50 = loadFont("JustMyType-50.vlw");
+  frameRate(180);
   size(858, 525, P2D);
   paddleL = new Paddle(20);
   paddleR = new Paddle(width-20);
@@ -83,6 +85,16 @@ void keyPressed() {
       }
     }
   }
+  if (gameScreen == 1 || gameScreen == 2) {
+    if (key == ' ') {
+      if (paused ^= true) {
+        pauseMenu();
+        noLoop();
+        surface.setTitle("Pong | PAUSED");
+      } else loop();
+    }
+  }
+
   if (gameScreen == 2) {
     if (key == CODED) {
       if (keyCode == UP) {

@@ -1,4 +1,5 @@
 void onePlayer() {
+  surface.setTitle("Pong | 1 Player");
   background(0);
   drawScore();
   drawDivider();
@@ -19,4 +20,5 @@ void onePlayer() {
 
   ball.display();
   ball.update();
+  
 }

@@ -4,7 +4,7 @@ class Ball {
   float w = 15;
 
   float angle = random(-PI/4, PI/4);
-  float speed = 5;
+  float speed = 10;
   float deltaX = speed * cos(angle);
   float deltaY = speed * sin(angle);
   Ball() {

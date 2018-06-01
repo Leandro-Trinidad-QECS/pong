@@ -1,6 +1,7 @@
 
 
 void lobby() {
+  surface.setTitle("Pong");
 
   /********* Setup lobby *********/
   background(0);
