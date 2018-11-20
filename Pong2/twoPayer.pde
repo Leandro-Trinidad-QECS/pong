@@ -1,4 +1,5 @@
 void twoPlayer() {
+  surface.setTitle("Pong | 2 Players");
   background(0);
   pauseButton();
 

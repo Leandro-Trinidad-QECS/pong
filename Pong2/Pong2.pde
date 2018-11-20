@@ -37,7 +37,7 @@ void setup() {
   paddleR = new Paddle(width-20);
   ball = new Ball();
   noStroke();
-  
+
   firstPlayer = new Button(width/2,height/2,100,100,"JustMyTyple");
 }
 void draw() {
@@ -104,7 +104,7 @@ void keyReleased() {
     if (key == CODED) {
       if (keyCode == UP) {
         paddleL.move(0);
-      } 
+      }
       if (keyCode == DOWN) {
         paddleL.move(0);
       }
@@ -114,14 +114,14 @@ void keyReleased() {
     if (key == CODED) {
       if (keyCode == UP) {
         paddleR.move(0);
-      } 
+      }
       if (keyCode == DOWN) {
         paddleR.move(0);
       }
     }
     if (key == 'w') {
       paddleL.move(0);
-    } 
+    }
     if (key == 's') {
       paddleL.move(0);
     }
@@ -134,7 +134,7 @@ void keyPressed() {
     if (key == CODED) {
       if (keyCode == UP) {
         paddleL.move(-5);
-      } 
+      }
       if (keyCode == DOWN) {
         paddleL.move(5);
       }
@@ -143,18 +143,28 @@ void keyPressed() {
       paused = !paused;
     }
   }
+  if (gameScreen == 1 || gameScreen == 2) {
+    if (key == ' ') {
+      if (paused ^= true) {
+        pauseMenu();
+        noLoop();
+        surface.setTitle("Pong | PAUSED");
+      } else loop();
+    }
+  }
+
   if (gameScreen == 2) {
     if (key == CODED) {
       if (keyCode == UP) {
         paddleR.move(-5);
-      } 
+      }
       if (keyCode == DOWN) {
         paddleR.move(5);
       }
     }
     if (key == 'w') {
       paddleL.move(-5);
-    } 
+    }
     if (key == 's') {
       paddleL.move(5);
     }
