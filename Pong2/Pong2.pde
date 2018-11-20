@@ -38,7 +38,7 @@ void setup() {
   ball = new Ball();
   noStroke();
 
-  firstPlayer = new Button(width/2,height/2,100,100,"JustMyTyple");
+  firstPlayer = new Button(width/2,height/2,100,100,"Player 1");
 }
 void draw() {
 
