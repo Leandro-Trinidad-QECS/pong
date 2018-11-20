@@ -3,13 +3,15 @@
 // 1:  One Player
 // 2:  Two Player
 // 3:  Game Over
-
-int gameScreen = 2;
-
+// 4:  Test
+int gameScreen = 4;
+int gameLoc = 0;
+boolean paused = false;
 /********* FONT *********/
 
 PFont JustMyType90;
 PFont JustMyType50;
+PFont JustMyType30;
 
 /********* Score *********/
 
@@ -21,13 +23,22 @@ Paddle paddleL;
 Paddle paddleR;
 Ball ball;
 PVector ballHistory;
+
+
+/********* Button *********/
+
+Button firstPlayer;
 void setup() {
   JustMyType90 = loadFont("JustMyType-90.vlw");
   JustMyType50 = loadFont("JustMyType-50.vlw");
+  JustMyType30 = loadFont("JustMyType-30.vlw");
   size(858, 525, P2D);
   paddleL = new Paddle(20);
   paddleR = new Paddle(width-20);
   ball = new Ball();
+  noStroke();
+  
+  firstPlayer = new Button(width/2,height/2,100,100,"JustMyTyple");
 }
 void draw() {
 
@@ -37,11 +48,55 @@ void draw() {
     return;
   case 1:
     onePlayer();
+    gameLoc = 1;
+
     return;
   case 2:
     twoPlayer();
+    gameLoc = 2;
+    return;
   case 3:
     gameOver();
+    return;
+  case 4:
+    test();
+    return;
+  }
+}
+void reset() {
+}
+
+void mousePressed() {
+  if (gameScreen == 0) {
+    if (pointRect(mouseX, mouseY, width/2, height/2-50, 160, 80)) {
+      resetScore();
+      gameScreen = 1;
+    }
+    if (pointRect(mouseX, mouseY, width/2, height/2+50, 160, 80)) {
+      resetScore();
+      gameScreen = 2;
+    }
+  }
+
+  if (gameScreen == 1 || gameScreen == 2) {
+    if (pointRect(mouseX, mouseY, 40, 30, 70, 40)) {
+      if (paused) {
+        paused = false;
+      } else {
+        paused = true;
+      }
+    }
+  }
+
+  if (gameScreen == 3) {
+    if (pointRect(mouseX, mouseY, width/2, height/2, 145, 50)) {
+      gameScreen = gameLoc;
+      reset();
+    }
+    if (pointRect(mouseX, mouseY, width/2, height/2+60, 145, 50)) {
+      gameScreen = 0;
+      reset();
+    }
   }
 }
 void keyReleased() {
@@ -73,6 +128,8 @@ void keyReleased() {
   }
 }
 void keyPressed() {
+
+
   if (gameScreen == 1) {
     if (key == CODED) {
       if (keyCode == UP) {
@@ -81,6 +138,9 @@ void keyPressed() {
       if (keyCode == DOWN) {
         paddleL.move(5);
       }
+    }
+    if (key == 'p') {
+      paused = !paused;
     }
   }
   if (gameScreen == 2) {
@@ -111,6 +171,27 @@ void drawDivider() {
     rect(width/2-1, i+1, 3, 10);
     fill(255);
     rect(width/2, i, 3, 10);
+  }
+}
+void pauseButton() {
+  fill(255);
+  if (pointRect(mouseX, mouseY, 40, 30, 70, 40)) {
+    fill(255);
+    rectMode(CENTER);
+    rect(40, 30, 70, 40);
+    fill(0);
+    fill(255);
+    text("Hello",100,100);
+  }
+
+  textFont(JustMyType30);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  if (paused) {
+    fill(0);
+    text("PLAY", 40, 30);
+  } else {
+    text("PAUSE", 40, 30);
   }
 }
 

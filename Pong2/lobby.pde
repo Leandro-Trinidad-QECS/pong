@@ -52,10 +52,6 @@ void lobby() {
   textFont(JustMyType50);
   fill(255);
   if (pointRect(mouseX, mouseY, width/2, height/2-50, 160, 80)) {
-    if (mousePressed) {
-      resetScore();
-      gameScreen = 1;
-    }
     fill(255);
     rect(width/2, height/2-50, 160, 80);
     fill(0);
@@ -65,10 +61,6 @@ void lobby() {
 
   fill(255);
   if (pointRect(mouseX, mouseY, width/2, height/2+50, 160, 80)) {
-    if (mousePressed) {
-      resetScore();
-      gameScreen = 2;
-    }
     fill(255);
     rect(width/2, height/2+50, 160, 80);
     fill(0);
@@ -98,4 +90,9 @@ void resetScore() {
   scoreRight = 0;
   paddleL.reset();
   paddleR.reset();
+}
+
+void test() {
+  background(0);
+  firstPlayer.show();
 }
