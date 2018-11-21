@@ -5,6 +5,8 @@ class Button {
   int wordLength;
   int textsize = 50;
   float boxwidth;
+  boolean pressed;
+  boolean pressHold;
   Button(float  x, float y, float w, float h, String word) {
     this.x = x;
     this.y = y;
@@ -39,5 +41,12 @@ class Button {
 
   boolean isHover() {
     return mouseX >= this.x-this.boxwidth/2 && mouseX <= this.x+this.boxwidth/2 && mouseY >= this.y-this.h/2 && mouseY <= this.y + this.h/2;
+  }
+  boolean isPressed() {
+    if (isHover() && mousePressed) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -4,7 +4,7 @@
 // 2:  Two Player
 // 3:  Game Over
 // 4:  Test
-int gameScreen = 4;
+int gameScreen = 0;
 int gameLoc = 0;
 boolean paused = false;
 /********* FONT *********/
@@ -28,6 +28,7 @@ PVector ballHistory;
 /********* Button *********/
 
 Button firstPlayer;
+Button twoPlayer;
 void setup() {
   JustMyType90 = loadFont("JustMyType-90.vlw");
   JustMyType50 = loadFont("JustMyType-50.vlw");
@@ -38,7 +39,8 @@ void setup() {
   ball = new Ball();
   noStroke();
 
-  firstPlayer = new Button(width/2,height/2,100,100,"Player 1");
+  firstPlayer = new Button(width/2, height/2, 100, 100, "Player 1");
+  twoPlayer = new Button(width/2, height/2+120, 100, 100, "Player 2");
 }
 void draw() {
 
@@ -67,16 +69,6 @@ void reset() {
 }
 
 void mousePressed() {
-  if (gameScreen == 0) {
-    if (pointRect(mouseX, mouseY, width/2, height/2-50, 160, 80)) {
-      resetScore();
-      gameScreen = 1;
-    }
-    if (pointRect(mouseX, mouseY, width/2, height/2+50, 160, 80)) {
-      resetScore();
-      gameScreen = 2;
-    }
-  }
 
   if (gameScreen == 1 || gameScreen == 2) {
     if (pointRect(mouseX, mouseY, 40, 30, 70, 40)) {
@@ -143,15 +135,6 @@ void keyPressed() {
       paused = !paused;
     }
   }
-  if (gameScreen == 1 || gameScreen == 2) {
-    if (key == ' ') {
-      if (paused ^= true) {
-        pauseMenu();
-        noLoop();
-        surface.setTitle("Pong | PAUSED");
-      } else loop();
-    }
-  }
 
   if (gameScreen == 2) {
     if (key == CODED) {
@@ -184,24 +167,211 @@ void drawDivider() {
   }
 }
 void pauseButton() {
+
+  //clear the corner
+  fill(0);
+  rect(40, 30, 70, 40);
+
   fill(255);
   if (pointRect(mouseX, mouseY, 40, 30, 70, 40)) {
     fill(255);
     rectMode(CENTER);
     rect(40, 30, 70, 40);
     fill(0);
-    fill(255);
-    text("Hello",100,100);
   }
 
   textFont(JustMyType30);
   textSize(30);
   textAlign(CENTER, CENTER);
   if (paused) {
-    fill(0);
     text("PLAY", 40, 30);
+    pauseMenu();
   } else {
     text("PAUSE", 40, 30);
+  }
+}
+
+void gameOver() {
+  background(0);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(90);
+  textFont(JustMyType90);
+  text("Game Over", width/2, 100);
+
+  fill(255);
+  if (pointRect(mouseX, mouseY, width/2, height/2, 145, 50)) {
+    rectMode(CENTER);
+    fill(255);
+    rect(width/2, height/2, 145, 50);
+    fill(0);
+  }
+
+
+  textSize(50);
+  textFont(JustMyType50);
+
+  text("Rematch", width/2, height/2);
+
+  fill(255);
+  if (pointRect(mouseX, mouseY, width/2, height/2+60, 145, 50)) {
+    rectMode(CENTER);
+    fill(255);
+    rect(width/2, height/2+60, 145, 50);
+    fill(0);
+  }
+
+  text("Exit", width/2, height/2+60);
+}
+
+
+
+void lobby() {
+  surface.setTitle("Pong");
+
+  /********* Setup lobby *********/
+  background(0);
+  textFont(JustMyType90);
+  //drawScore();
+  textAlign(CENTER, CENTER);
+  //drawScore();
+  textAlign(CENTER, CENTER);
+  fill(255-100);
+  text("PONG", width/2-3, 100+3);
+  fill(255);
+  text("PONG", width/2, 100);
+
+  /********* Balls and Paddles *********/
+  ball.display();
+  ball.update();
+  paddleL.display();
+  paddleL.update();
+
+
+  /********* Moving the left paddle *********/
+  if (ball.x < width/2) {
+    float targetY = ball.y;
+    float dy = targetY - paddleL.y;
+    paddleL.y += dy * paddleL.easing;
+  } else {
+    float targetY = height/2;
+    float dy = targetY - paddleL.y;
+    paddleL.y += dy * paddleL.easing;
+  }
+
+
+  paddleR.display();
+  paddleR.update();
+
+
+  /********* moving right paddle *********/
+  if (ball.x > width/2) {
+    float targetY = ball.y;
+    float dy = targetY - paddleR.y;
+    paddleR.y += dy * paddleR.easing;
+  } else {
+    float targetY = height/2;
+    float dy = targetY - paddleR.y;
+    paddleR.y += dy * paddleR.easing;
+  }
+
+  /********* buttons *********/
+  firstPlayer.show();
+  if (firstPlayer.isPressed()) {
+    gameScreen = 1;
+    resetScore();
+  }
+
+  twoPlayer.show();
+  if (twoPlayer.isPressed()) {
+    gameScreen = 2;
+    resetScore();
+  }
+}
+
+
+void drawScore() {
+  textFont(JustMyType90);
+  textAlign(RIGHT);
+  fill(255-100);
+  text(scoreLeft, width/2-100-3, 100+3);
+  fill(255);
+  text(scoreLeft, width/2-100, 100);
+
+  textAlign(LEFT);
+  fill(255-100);
+  text(scoreRight, width/2+100-3, 100+3);
+  fill(255);
+  text(scoreRight, width/2+100, 100);
+}
+
+void resetScore() {
+  ball.reset();
+  scoreLeft = 0;
+  scoreRight = 0;
+  paddleL.reset();
+  paddleR.reset();
+}
+
+void test() {
+  background(0);
+  firstPlayer.show();
+}
+void onePlayer() {
+
+  pauseButton();
+  if (!paused) {
+
+    background(0);
+    pauseButton();
+    drawScore();
+    drawDivider();
+    paddleL.display();
+    paddleR.display();
+    paddleL.update();
+
+    if (ball.x > width/2) {
+      float targetY = ball.y;
+      float dy = targetY - paddleR.y;
+      paddleR.y += dy * paddleR.easing;
+    } else {
+      float targetY = height/2;
+      float dy = targetY - paddleR.y;
+      paddleR.y += dy * paddleR.easing;
+    }
+    paddleR.update();
+
+    ball.display();
+    ball.update();
+  }
+}
+
+void pauseMenu() {
+  textFont(JustMyType90);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  rectMode(CENTER);
+  rect(width/2, height/2, 200, 85);
+  fill(255-100);
+  text("Paused", width/2-3, height/2+3);
+  fill(0);
+  text("Paused", width/2, height/2);
+}
+
+void twoPlayer() {
+  surface.setTitle("Pong | 2 Players");
+  background(0);
+  pauseButton();
+
+  if (!paused) {
+    drawDivider();
+    drawScore();
+    paddleL.display();
+    paddleR.display();
+    paddleL.update();
+    paddleR.update();
+    ball.display();
+    ball.update();
   }
 }
 
