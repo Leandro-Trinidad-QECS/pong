@@ -7,6 +7,7 @@ class Ball {
   float speed = 10;
   float deltaX = speed * cos(angle);
   float deltaY = speed * sin(angle);
+  int prevScore;
   Ball() {
     reset();
   }
@@ -19,11 +20,13 @@ class Ball {
       deltaY *= -1;
     }
     if (x > width) {
+      prevScore = 1;
       scoreLeft +=1;
       reset();
-    } else if(x < 0) {
-    scoreRight +=1;
-    reset();
+    } else if (x < 0) {
+      prevScore = 2;
+      scoreRight +=1;
+      reset();
     }
     if (paddleL.hit()) {
       checkPaddleLeft(paddleL);
@@ -62,18 +65,26 @@ class Ball {
     x = width/2;
     y = height/2;
     w = 15;
-
+    print("test",prevScore);
+    if (scoreLeft == 0 && scoreRight == 0) {
+      if (random(1) < 0.5) {
+        deltaX *= -1;
+      }
+    } else if( prevScore == 2) {
+      deltaX = +deltaX;
+    } else if(prevScore == 1) {
+      deltaX = -deltaX;
+    }
     angle = random(-PI/4, PI/4);
     speed = 5;
+    println(cos(angle));
     deltaX = speed * cos(angle);
-    if (random(1) < 0.5) {
-      deltaX *= -1;
-    }
     deltaY = speed * sin(angle);
   }
+
   void display() {
     pushMatrix();
-    
+
     ellipseMode(CENTER);
     fill(255-100);
     rect(x-3, y+3, w, w);

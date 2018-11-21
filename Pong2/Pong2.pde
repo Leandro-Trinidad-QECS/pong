@@ -65,7 +65,9 @@ void draw() {
     return;
   }
 }
-void reset() {
+
+void test() {
+  background(0);
 }
 
 void mousePressed() {
@@ -80,16 +82,6 @@ void mousePressed() {
     }
   }
 
-  if (gameScreen == 3) {
-    if (pointRect(mouseX, mouseY, width/2, height/2, 145, 50)) {
-      gameScreen = gameLoc;
-      reset();
-    }
-    if (pointRect(mouseX, mouseY, width/2, height/2+60, 145, 50)) {
-      gameScreen = 0;
-      reset();
-    }
-  }
 }
 void keyReleased() {
   if (gameScreen == 1) {
@@ -313,10 +305,7 @@ void resetScore() {
   paddleR.reset();
 }
 
-void test() {
-  background(0);
-  firstPlayer.show();
-}
+
 void onePlayer() {
 
   pauseButton();

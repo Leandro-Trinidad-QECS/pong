@@ -12,8 +12,8 @@ class Paddle {
   }
 
   void update() {
-    y += ym;
-    y = constrain(y, 0+h/2, height-h/2);
+    this.y += this.ym;
+    this.y = constrain(y, 0+h/2, height-h/2);
   }
   void reset() {
     this.y = height/2;
@@ -24,7 +24,7 @@ class Paddle {
   }
 
   boolean hit() {
-    if ( collision(int(x), int(y), int(w), int(h), int(ball.x), int(ball.y), int(ball.w), int(ball.w))) {
+    if (collision(int(x), int(y), int(w), int(h), int(ball.x), int(ball.y), int(ball.w), int(ball.w))) {
       return true;
     }
     return false;
