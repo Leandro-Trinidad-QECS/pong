@@ -17,20 +17,25 @@ class Ball {
 
     // roof bounce
     if (y < 0 || y > height) {
+      hitSM.play();
       deltaY *= -1;
     }
     if (x > width) {
-      prevScore = 1;
+      explosionSM.play();
+      prevScore = 2;
       scoreLeft +=1;
       reset();
     } else if (x < 0) {
-      prevScore = 2;
+      explosionSM.play();
+      prevScore = 1;
       scoreRight +=1;
       reset();
     }
     if (paddleL.hit()) {
+      hitSM.play();
       checkPaddleLeft(paddleL);
     } else if (paddleR.hit()) { 
+      hitSM.play();
       checkPaddleRight(paddleR);
     }
   }
@@ -65,19 +70,15 @@ class Ball {
     x = width/2;
     y = height/2;
     w = 15;
-    print("test",prevScore);
+    //print("test:", prevScore, ":");
     if (scoreLeft == 0 && scoreRight == 0) {
       if (random(1) < 0.5) {
         deltaX *= -1;
       }
-    } else if( prevScore == 2) {
-      deltaX = +deltaX;
-    } else if(prevScore == 1) {
-      deltaX = -deltaX;
-    }
+    }  
+
     angle = random(-PI/4, PI/4);
     speed = 5;
-    println(cos(angle));
     deltaX = speed * cos(angle);
     deltaY = speed * sin(angle);
   }

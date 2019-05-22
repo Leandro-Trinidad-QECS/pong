@@ -35,15 +35,12 @@ class Button {
     text(this.word, this.x, this.y);
   }
 
-  boolean isActive() {
-    return active;
-  }
-
   boolean isHover() {
     return mouseX >= this.x-this.boxwidth/2 && mouseX <= this.x+this.boxwidth/2 && mouseY >= this.y-this.h/2 && mouseY <= this.y + this.h/2;
   }
   boolean isPressed() {
     if (isHover() && mousePressed) {
+      pauseSM.play();
       return true;
     } else {
       return false;

@@ -1,9 +1,12 @@
+
+
 /********* VARIABLES *********/
 // 0:  Lobby
 // 1:  One Player
 // 2:  Two Player
 // 3:  Game Over
 // 4:  Test
+
 int gameScreen = 0;
 int gameLoc = 0;
 boolean paused = false;
@@ -29,6 +32,20 @@ PVector ballHistory;
 
 Button firstPlayer;
 Button twoPlayer;
+
+
+/********* Sounds *********/
+
+Minim minim;
+AudioPlayer player;
+
+//sound manager
+soundManager explosionSM;
+soundManager clickSM;
+soundManager pauseSM;
+soundManager hitSM;
+
+
 void setup() {
   JustMyType90 = loadFont("JustMyType-90.vlw");
   JustMyType50 = loadFont("JustMyType-50.vlw");
@@ -41,6 +58,12 @@ void setup() {
 
   firstPlayer = new Button(width/2, height/2, 100, 100, "Player 1");
   twoPlayer = new Button(width/2, height/2+120, 100, 100, "Player 2");
+  minim = new Minim(this);
+
+  explosionSM = new soundManager(new String[]{"explosion.wav", "explosion2.wav", "explosion3.wav"});
+  clickSM = new soundManager(new String[]{"click.wav", "click2.wav", "click3.wav"});
+  pauseSM = new soundManager(new String[]{"pause.wav", "pause2.wav", "pause3.wav"});
+  hitSM = new soundManager(new String[]{"bounce.wav", "bounce2.wav", "bounce3.wav"});
 }
 void draw() {
 
@@ -74,6 +97,7 @@ void mousePressed() {
 
   if (gameScreen == 1 || gameScreen == 2) {
     if (pointRect(mouseX, mouseY, 40, 30, 70, 40)) {
+      pauseSM.play();
       if (paused) {
         paused = false;
       } else {
@@ -81,7 +105,6 @@ void mousePressed() {
       }
     }
   }
-
 }
 void keyReleased() {
   if (gameScreen == 1) {
@@ -123,6 +146,8 @@ void keyPressed() {
         paddleL.move(5);
       }
     }
+  }
+  if (gameScreen == 1 || gameScreen == 2) {
     if (key == 'p') {
       paused = !paused;
     }
@@ -349,10 +374,11 @@ void pauseMenu() {
 
 void twoPlayer() {
   surface.setTitle("Pong | 2 Players");
-  background(0);
   pauseButton();
 
   if (!paused) {
+    background(0);
+    pauseButton();
     drawDivider();
     drawScore();
     paddleL.display();
